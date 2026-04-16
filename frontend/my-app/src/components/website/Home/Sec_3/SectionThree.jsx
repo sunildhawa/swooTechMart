@@ -1,7 +1,7 @@
 'use client' // Wajib jika menggunakan hooks di Next.js App Router
 
 import { useState, useEffect } from 'react'
-import BestSellerCard from '@/components/website/global/BestSellerCard'
+import BestSellerCard from '../../Global/BestSellerCard'
 
 import { getProducts } from '@/api/product'
 

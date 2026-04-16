@@ -1,4 +1,7 @@
 "use client";
+
+export const dynamic = "force-dynamic";
+
 import React, { useState, useEffect, useMemo } from 'react';
 import { CreditCard, MapPin, ChevronRight, Wallet, Banknote, Loader2, Navigation, CheckCircle2 } from 'lucide-react';
 import { useSearchParams, useRouter } from 'next/navigation';
@@ -7,7 +10,7 @@ import { notify } from "@/utils/apiHealpers";
 import Script from "next/script";
 
 export default function CheckoutPage() {
-    const searchParams = useSearchParams();
+    const searchParams = typeof window !== "undefined" ? useSearchParams() : null;
     const router = useRouter();
 
     const [user, setUser] = useState(null);
@@ -19,10 +22,11 @@ export default function CheckoutPage() {
     const [address, setAddress] = useState("");
     const [locLoading, setLocLoading] = useState(false);
 
-    const selectedIds = useMemo(() => {
-        const items = searchParams.get('items');
-        return items ? items.split(',') : [];
-    }, [searchParams]);
+   const selectedIds = useMemo(() => {
+    if (!searchParams) return [];
+    const items = searchParams.get('items');
+    return items ? items.split(',') : [];
+}, [searchParams]);
 
     useEffect(() => {
         const storedUser = localStorage.getItem("user");

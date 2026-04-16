@@ -1,16 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  // Turbopack ko force karna ki Tailwind config ko dekhe
-  experimental: {
-    turbo: {
-      rules: {
-        '*.css': {
-          loaders: ['postcss-loader'],
-          as: 'style',
-        },
-      },
-    },
-  },
-};
+const nextConfig = {}
 
-export default nextConfig;
+export default nextConfig

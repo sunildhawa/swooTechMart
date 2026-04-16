@@ -1,4 +1,4 @@
-import BestSellerCard from '@/components/website/global/BestSellerCard'
+
 
 export default function RecentlyViewedRow() {
 

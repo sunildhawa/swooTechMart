@@ -11,22 +11,28 @@ const categories = [
 
 export default function LaptopQuickLinks() {
     return (
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
             {categories.map((cat, i) => (
-                <div key={i} className="flex items-center gap-3">
+                <div key={i} className="flex items-center gap-4 group cursor-pointer">
 
-                    <div className="relative w-10 h-10">
-                        <img
+                    <div className="relative w-12 h-12 flex-shrink-0 bg-gray-50 rounded-lg p-1 group-hover:scale-110 transition-transform">
+                        {/* Fix: Capital 'Image' use kiya and standard img ko hataya */}
+                        <Image
                             src={cat.icon}
                             alt={cat.name}
                             fill
-                            className="object-contain"
+                            className="object-contain p-1"
+                            sizes="48px"
                         />
                     </div>
 
-                    <div>
-                        <p className="text-sm font-medium">{cat.name}</p>
-                        <p className="text-xs text-gray-500">{cat.items} Items</p>
+                    <div className="overflow-hidden">
+                        <p className="text-[13px] font-bold text-gray-800 leading-tight group-hover:text-[#00A896] transition-colors">
+                            {cat.name}
+                        </p>
+                        <p className="text-[11px] text-gray-400 mt-0.5">
+                            {cat.items} Items
+                        </p>
                     </div>
                 </div>
             ))}

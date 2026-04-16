@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import { axiosAPIinstance } from '@/utils/apiHealpers';
 
 export const CartContext = createContext();
 
@@ -8,7 +9,7 @@ export const CartProvider = ({ children }) => {
 
   const updateCartHeader = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/cart", {
+      const res = await axiosAPIinstance.get(`/cart`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
       });
       const total = res.data.data.reduce((acc, item) => acc + (item.productId.final_price * item.qty), 0);

@@ -60,7 +60,7 @@ export default function SectionThree() {
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
                     {products.map((product) => (
                         <BestSellerCard
-                            key={product._id.$oid}
+                            key={product._id}
                             // API data ko Component props se match karein
                             title={product.name}
                             image={`${process.env.NEXT_PUBLIC_API_BASE_URL}uploads/product/${product.thumbnail}`} // Agar images 'uploads' folder mein hain

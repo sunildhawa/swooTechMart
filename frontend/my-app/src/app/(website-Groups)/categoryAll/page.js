@@ -1,7 +1,7 @@
 import { getCategories } from "@/api/category";
 import Link from "next/link";
 import { ArrowRight, LayoutGrid } from "lucide-react";
-
+import CategoryImage from "@/components/website/CategoryImage";
 export default async function AllCategoriesPage() {
   // Sabhi categories fetch karein (limit hata di hai taaki sab dikhein)
   const categories = await getCategories({ status: true });
@@ -9,7 +9,7 @@ export default async function AllCategoriesPage() {
   return (
     <div className="min-h-screen bg-gray-50/50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        
+
         {/* Header Section */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
@@ -37,8 +37,8 @@ export default async function AllCategoriesPage() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
             {categories?.data?.map((item, index) => (
-              <Link 
-                key={item.id || index} 
+              <Link
+                key={item.id || index}
                 href={`/products?category=${item.id}`}
                 className="group relative bg-white rounded-[2rem] p-6 border border-gray-100 hover:border-teal-200 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] flex flex-col items-center text-center"
               >
@@ -47,13 +47,11 @@ export default async function AllCategoriesPage() {
 
                 {/* Image Container */}
                 <div className="relative z-10 w-32 h-32 mb-6 rounded-3xl overflow-hidden bg-gray-50 border border-gray-50 flex-shrink-0">
-                  <img
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-115"
-                    alt={item.name}
+                  <CategoryImage
                     src={`${process.env.NEXT_PUBLIC_API_BASE_URL}uploads/category/${item.image}`}
-                    onError={(e) => { e.target.src = "https://via.placeholder.com/300?text=" + item.name; }}
+                    name={item.name}
                   />
-                  
+
                   {/* Item Count Badge */}
                   <div className="absolute top-2 right-2 bg-white/90 backdrop-blur-sm text-teal-600 text-[10px] font-black px-2 py-1 rounded-lg shadow-sm">
                     {item.count || 0}

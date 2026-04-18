@@ -80,7 +80,7 @@ export default function CategorySidebar() {
       </ul>
 
       {/* View All Footer */}
-      <Link href="/products" className="mt-4 flex items-center justify-center gap-2 py-3 rounded-xl border-t border-gray-50 text-[11px] font-black text-gray-400 hover:text-teal-600 transition-all uppercase tracking-tighter">
+      <Link href="/categoryAll" className="mt-4 flex items-center justify-center gap-2 py-3 rounded-xl border-t border-gray-50 text-[11px] font-black text-gray-400 hover:text-teal-600 transition-all uppercase tracking-tighter">
         View All Departments
       </Link>
 

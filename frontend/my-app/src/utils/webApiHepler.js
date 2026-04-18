@@ -48,7 +48,7 @@ axiosAPIinstance.interceptors.response.use(
           notify("Session expired. Please login again.", false);
 
           setTimeout(() => {
-            window.location.href = "/login";
+            window.location.href = "/contact";
           }, 1500);
         }
       }

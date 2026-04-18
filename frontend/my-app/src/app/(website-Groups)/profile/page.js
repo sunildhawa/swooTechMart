@@ -15,14 +15,14 @@ const UserProfile = () => {
       setLoading(false);
     } else {
       // Agar user login nahi hai, toh login page par bhej dein
-      router.push('/login');
+      router.push('/contact');
     }
   }, [router]);
 
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
-    router.push('/login');
+    router.push('/contact');
   };
 
   if (loading) {

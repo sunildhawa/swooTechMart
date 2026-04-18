@@ -17,7 +17,7 @@ app.use(express.json());
 
 app.use(cors({
   origin: [
-    "http://localhost:10000",
+    "http://localhost:3000",
     "https://swoo-tech-mart-n1c5.vercel.app"
   ],
   credentials: true

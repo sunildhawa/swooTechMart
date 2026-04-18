@@ -8,7 +8,7 @@ export const getOrders = async () => {
     try {
         const token = localStorage.getItem("token"); // Token check karein
 
-        const response = await axios.get(`${API_BASE}order/my-orders`, {
+        const response = await axios.get(`${API_BASE}/order/my-orders`, {
             headers: {
                 Authorization: `Bearer ${token}`, // Token headers mein bhejna zaroori hai
             },
@@ -38,7 +38,7 @@ export const getOrders = async () => {
 export const getByIdOrders = async (id) => {
     try {
         // Sirf instance use karein, headers ki zaroorat nahi kyunki interceptor handles it
-        const res = await axiosAPIinstance.get(`order/${id}`);
+        const res = await axiosAPIinstance.get(`/order/${id}`);
         return res.data;
     } catch (error) {
         const errorMessage = error.response?.data?.message || error.message;

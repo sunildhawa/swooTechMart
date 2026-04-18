@@ -81,7 +81,7 @@ export default function TopCategories() {
                   
                   <div className="relative h-full w-full flex items-center justify-center p-4">
                     <img
-                      src={`${process.env.NEXT_PUBLIC_API_BASE_URL}uploads/category/${cat.image}`}
+                      src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/uploads/category/${cat.image}`}
                       className="h-full w-full object-contain transform group-hover:scale-110 transition-transform duration-500"
                       alt={cat.name}
                     />

@@ -68,7 +68,7 @@ export default function ProductsWithSidebar() {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (error) {
       console.error("Fetch Error:", error);
-      notify("error", "Failed to load products");
+      notify("error", "Failed to load products", false);
     } finally {
       setLoading(false);
     }
@@ -79,30 +79,27 @@ export default function ProductsWithSidebar() {
   }, [fetchFilteredProducts]);
 
   // --- FIXED: ADD TO CART API LOGIC ---
-  const addToCart = async (productId) => {
+const addToCart = async (productId) => {
     try {
-      // Check if user is logged in (Optional: depend on your token logic)
-      // const token = localStorage.getItem('token');
-      // if (!token) return notify("error", "Please login first!");
-
-      const response = await axiosAPIinstance.post("cart", {
+      const response = await axiosAPIinstance.post("/cart", {
         productId: productId,
         qty: 1
       });
 
       if (response.data.success || response.status === 200) {
-        notify("Product added to cart!");
+        // SAHI TARIKA: notify(message, isSuccessBoolean)
+        notify("Product added to cart!", true); // Ye GREEN dikhayega
         
-        // Header mein cart count update karne ke liye event
         window.dispatchEvent(new Event("cartUpdated"));
       }
     } catch (error) {
       console.error("Cart API Error:", error);
       const errorMsg = error.response?.data?.message || "Failed to add to cart";
-      notify("error", errorMsg);
+      
+      // FIX: Pehla argument message, dusra FALSE (error ke liye)
+      notify(errorMsg, false); // Ye ab RED dikhayega
     }
   };
-
   const handleCategorySelect = (id) => {
     setSelectedCategory(prev => (prev === id ? null : id));
     setSelectedBrand(null);
@@ -235,7 +232,7 @@ export default function ProductsWithSidebar() {
                   <div key={product._id} className="group bg-white rounded-[32px] border border-slate-100 p-4 hover:shadow-2xl transition-all duration-500">
                     <Link href={`/product/${product._id}`} className="block overflow-hidden rounded-[24px] bg-[#f8fafc] aspect-square">
                       <img
-                        src={`${process.env.NEXT_PUBLIC_API_BASE_URL}uploads/product/${product.thumbnail}`}
+                        src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/uploads/product/${product.thumbnail}`}
                         alt={product.name}
                         className="w-full h-full object-contain p-8 transform group-hover:scale-110 transition-transform duration-700"
                         onError={(e) => { e.target.src = "/placeholder-image.png"; }}

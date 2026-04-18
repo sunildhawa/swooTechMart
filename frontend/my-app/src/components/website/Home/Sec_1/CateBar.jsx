@@ -55,7 +55,7 @@ export default function CategorySidebar() {
               <div className="flex items-center gap-3">
                 <div className="relative h-11 w-11 rounded-xl overflow-hidden bg-gray-50 border border-gray-100 flex-shrink-0 group-hover:shadow-md transition-all">
                   <img
-                    src={`${process.env.NEXT_PUBLIC_API_BASE_URL}uploads/category/${item.image}`}
+                    src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/uploads/category/${item.image}`}
                     className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                 </div>

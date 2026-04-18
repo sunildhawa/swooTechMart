@@ -160,7 +160,7 @@ export default function Header() {
                       <p className="text-sm font-black text-gray-900 leading-none">{user.name?.split(' ')[0]}</p>
                     </div>
                     <img
-                      src={user.profilePic ? `${process.env.NEXT_PUBLIC_API_BASE_URL}uploads/user/${user.profilePic}` : `https://ui-avatars.com/api/?name=${user.name}`}
+                      src={user.profilePic ? `${process.env.NEXT_PUBLIC_API_BASE_URL}/uploads/user/${user.profilePic}` : `https://ui-avatars.com/api/?name=${user.name}`}
                       className="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-teal-50 shadow-sm"
                       alt="user"
                     />

@@ -63,7 +63,7 @@ export default function SectionThree() {
                             key={product._id}
                             // API data ko Component props se match karein
                             title={product.name}
-                            image={`${process.env.NEXT_PUBLIC_API_BASE_URL}uploads/product/${product.thumbnail}`} // Agar images 'uploads' folder mein hain
+                            image={`${process.env.NEXT_PUBLIC_API_BASE_URL}/uploads/product/${product.thumbnail}`} // Agar images 'uploads' folder mein hain
                             price={product.final_price}
                             oldPrice={product.original_price}
                             save={product.original_price - product.final_price}

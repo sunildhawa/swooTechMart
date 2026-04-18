@@ -2,7 +2,7 @@ const { axiosAPIinstance } = require("@/utils/apiHealpers");
 const getBrand = async (params = {}) => {
   try {
     const query = new URLSearchParams(params).toString();
-    const url = query.length > 0 ? `brand?${query}`:"brand"
+    const url = query.length > 0 ? `/brand?${query}`:"/brand"
     
 
     const res = await axiosAPIinstance.get(url);  
@@ -13,7 +13,7 @@ const getBrand = async (params = {}) => {
 };
 const getBrandById = async(id)=>{
     try{
-    const res = await axiosAPIinstance.get(`brand/${id}`);
+    const res = await axiosAPIinstance.get(`/brand/${id}`);
     return res.data
     }catch(error){
         return {success: false, data: {} }
@@ -22,7 +22,7 @@ const getBrandById = async(id)=>{
 }
 const addBrand = async (data) => {
   try {
-    const res = await axiosAPIinstance.post("brand/create", data);
+    const res = await axiosAPIinstance.post("/brand/create", data);
     return res.data;
   } catch (error) {
     console.error("addBrand error:", error);
@@ -31,7 +31,7 @@ const addBrand = async (data) => {
 };
 const updateBrand = async (id, data) => {
   try {
-    const res = await axiosAPIinstance.put(`brand/update/${id}`, data);
+    const res = await axiosAPIinstance.put(`/brand/update/${id}`, data);
     return res.data;
   } catch (error) {
     console.error("updateBrand error:", error);

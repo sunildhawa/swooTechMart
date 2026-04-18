@@ -27,7 +27,7 @@ const { axiosAPIinstance } = require("@/utils/apiHealpers");
 export const getCategories = async(params = {})=>{
   try{
    const query = new URLSearchParams(params).toString();
-   const url = query.length > 0 ? `category?${query}`:"category"
+   const url = query.length > 0 ? `/category?${query}`:"/category"
    const res = await axiosAPIinstance.get(url);
    return res.data
   }catch(error){
@@ -36,7 +36,7 @@ export const getCategories = async(params = {})=>{
 }
 export const getCategoryById = async (id) => {
   try {
-    const res = await axiosAPIinstance.get(`category/fetch/${id}`);
+    const res = await axiosAPIinstance.get(`/category/fetch/${id}`);
     return res.data;
   } catch {
     return { success: false, data: {} };

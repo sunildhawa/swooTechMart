@@ -102,9 +102,6 @@ export default function ViewMyOrders() {
                         src={firstItem?.thumbnail ? `${IMAGE_BASE_URL}${firstItem.thumbnail}` : "/placeholder.png"} 
                         alt="product" 
                         className="w-full h-full object-contain p-2 group-hover:scale-110 transition-transform duration-500"
-                        onError={(e) => {
-                          e.currentTarget.src = "https://via.placeholder.com/150?text=No+Image";
-                        }}
                     />
                     {order.items?.length > 1 && (
                         <div className="absolute bottom-1 right-1 bg-black/80 backdrop-blur-md text-white text-[9px] font-bold px-2 py-1 rounded-lg">

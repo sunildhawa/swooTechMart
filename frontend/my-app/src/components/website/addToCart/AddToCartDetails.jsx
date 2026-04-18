@@ -52,7 +52,6 @@ export default function AddToCartDetails({ data }) {
                   src={imageUrl}
                   alt={item.name}
                   className="max-h-full max-w-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
-                  onError={(e) => { e.target.src = '/placeholder.png' }} // Fallback image
                 />
 
                 <button className="absolute top-5 right-5 p-3 bg-white/80 backdrop-blur-md rounded-full shadow-sm hover:bg-white transition">

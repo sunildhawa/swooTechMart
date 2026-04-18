@@ -5,9 +5,6 @@ export default function CategoryImage({ src, name }) {
     <img
       src={src}
       alt={name}
-      onError={(e) => {
-        e.target.src = "https://via.placeholder.com/300?text=" + name;
-      }}
     />
   );
 }

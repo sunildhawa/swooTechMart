@@ -29,9 +29,6 @@ export default function BestSellerCard({
                     alt={title || "Product"}
                     src={image}
                     className="max-h-[80%] max-w-[80%] object-contain transition-transform duration-500 group-hover:scale-110 mix-blend-multiply"
-                    onError={(e) => {
-                        e.target.src = 'https://via.placeholder.com/150?text=No+Image';
-                    }}
                 />
             </div>
 

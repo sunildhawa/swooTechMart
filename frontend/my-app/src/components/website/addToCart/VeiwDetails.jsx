@@ -35,7 +35,6 @@ export default function OrderDetailsPage({ data }) {
                                         src={`${IMAGE_BASE_URL}${item.productId?.thumbnail}`} 
                                         alt="item" 
                                         className="w-full h-full object-contain"
-                                        onError={(e) => e.target.src = "/placeholder.png"}
                                     />
                                 </div>
                                 <div className="flex-1">

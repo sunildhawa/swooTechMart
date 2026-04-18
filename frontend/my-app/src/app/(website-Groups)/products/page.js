@@ -1,7 +1,7 @@
 "use client";
 import { axiosAPIinstance } from "@/utils/webApiHepler";
-import React, { useState, useEffect } from "react";
-import { Filter, Search, ShoppingCart, IndianRupee, Tag, Layers, Palette, CircleDollarSign, LayoutGrid } from "lucide-react";
+import React, { useState, useEffect, useCallback } from "react";
+import { Filter, Search, ShoppingCart, LayoutGrid } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
@@ -40,17 +40,15 @@ export default function ProductsWithSidebar() {
         setCategories(catRes?.data || []);
         setBrands(brandRes?.data || []);
         setColors(colorRes?.data || []);
-      } catch (err) { console.error("Sidebar Error:", err); }
+      } catch (err) { 
+        console.error("Sidebar Error:", err); 
+      }
     };
     loadSidebarData();
   }, []);
 
-  // 2. FETCH LOGIC: Jab bhi koi filter state change ho
-  useEffect(() => {
-    fetchFilteredProducts();
-  }, [selectedCategory, selectedBrand, selectedColor, priceRange, searchTerm]);
-
-  const fetchFilteredProducts = async () => {
+  // 2. FETCH LOGIC
+  const fetchFilteredProducts = useCallback(async () => {
     try {
       setLoading(true);
       const params = { status: true, limit: 100 };
@@ -62,26 +60,51 @@ export default function ProductsWithSidebar() {
       if (priceRange) params.max_price = priceRange;
 
       const res = await getProducts(params);
-      const filtered = (res?.data || []).filter(p => p.original_price <= priceRange);
+      const data = res?.data || [];
+      
+      const filtered = data.filter(p => Number(p.original_price) <= priceRange);
       setProducts(filtered);
 
-      // Scroll to top fix: automatic scroll up on results change
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (error) {
       console.error("Fetch Error:", error);
+      notify("error", "Failed to load products");
     } finally {
       setLoading(false);
     }
+  }, [selectedCategory, selectedBrand, selectedColor, priceRange, searchTerm]);
+
+  useEffect(() => {
+    fetchFilteredProducts();
+  }, [fetchFilteredProducts]);
+
+  // --- FIXED: ADD TO CART API LOGIC ---
+  const addToCart = async (productId) => {
+    try {
+      // Check if user is logged in (Optional: depend on your token logic)
+      // const token = localStorage.getItem('token');
+      // if (!token) return notify("error", "Please login first!");
+
+      const response = await axiosAPIinstance.post("cart", {
+        productId: productId,
+        qty: 1
+      });
+
+      if (response.data.success || response.status === 200) {
+        notify("Product added to cart!");
+        
+        // Header mein cart count update karne ke liye event
+        window.dispatchEvent(new Event("cartUpdated"));
+      }
+    } catch (error) {
+      console.error("Cart API Error:", error);
+      const errorMsg = error.response?.data?.message || "Failed to add to cart";
+      notify("error", errorMsg);
+    }
   };
 
-  // 3. SPECIAL HANDLE: Category change par Brand aur Color ko turant reset karna
   const handleCategorySelect = (id) => {
-    if (selectedCategory === id) {
-      setSelectedCategory(null);
-    } else {
-      setSelectedCategory(id);
-    }
-    // Deep Reset: Category change hote hi baaki filters reset honge
+    setSelectedCategory(prev => (prev === id ? null : id));
     setSelectedBrand(null);
     setSelectedColor(null);
   };
@@ -111,7 +134,7 @@ export default function ProductsWithSidebar() {
               placeholder="Search products..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 bg-white border border-slate-200 rounded-2xl outline-none shadow-sm"
+              className="w-full pl-12 pr-4 py-3 bg-white border border-slate-200 rounded-2xl outline-none shadow-sm focus:border-blue-500 transition-colors"
             />
           </div>
         </div>
@@ -126,13 +149,11 @@ export default function ProductsWithSidebar() {
                 <h2 className="font-bold text-lg flex items-center gap-2">
                   <Filter size={18} className="text-blue-600" /> Filters
                 </h2>
-                <button onClick={clearFilters} className="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-md">RESET</button>
+                <button onClick={clearFilters} className="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-md hover:bg-blue-100">RESET</button>
               </div>
 
-              {/* Scrollable Filters */}
-              <div className="flex-1 overflow-y-auto p-6 space-y-8 scrollbar-hide">
-                
-                {/* 1. Categories (TOP) */}
+              <div className="flex-1 overflow-y-auto p-6 space-y-8">
+                {/* Categories */}
                 <div>
                   <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">Categories</h3>
                   <div className="space-y-1">
@@ -150,7 +171,7 @@ export default function ProductsWithSidebar() {
                   </div>
                 </div>
 
-                {/* 2. Brands (MIDDLE) */}
+                {/* Brands */}
                 <div className="pt-6 border-t border-slate-50">
                   <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">Brands</h3>
                   <div className="grid grid-cols-2 gap-2">
@@ -168,7 +189,7 @@ export default function ProductsWithSidebar() {
                   </div>
                 </div>
 
-                {/* 3. Colors (BOTTOM SECTION) */}
+                {/* Colors */}
                 <div className="pt-6 border-t border-slate-50">
                   <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">Colors</h3>
                   <div className="flex flex-wrap gap-2.5">
@@ -185,7 +206,7 @@ export default function ProductsWithSidebar() {
                   </div>
                 </div>
 
-                {/* 4. Price (BOTTOM) */}
+                {/* Price */}
                 <div className="pt-6 border-t border-slate-50">
                   <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">Price Range</h3>
                   <input 
@@ -196,13 +217,12 @@ export default function ProductsWithSidebar() {
                   />
                   <div className="mt-2 text-right text-sm font-black text-slate-900">₹{priceRange.toLocaleString()}</div>
                 </div>
-
               </div>
             </div>
           </aside>
 
           {/* Product Grid Area */}
-          <div className="flex-1 min-h-[1000px]">
+          <div className="flex-1">
             {loading ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
                 {[1, 2, 3, 4, 5, 6].map((i) => (
@@ -212,25 +232,25 @@ export default function ProductsWithSidebar() {
             ) : products.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
                 {products.map((product) => (
-                  <div key={product._id} className="group bg-white rounded-[32px] border border-slate-100 p-4 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-                    <Link href={`/cart/${product._id}`} className="block overflow-hidden rounded-[24px] bg-[#f8fafc] aspect-square">
+                  <div key={product._id} className="group bg-white rounded-[32px] border border-slate-100 p-4 hover:shadow-2xl transition-all duration-500">
+                    <Link href={`/product/${product._id}`} className="block overflow-hidden rounded-[24px] bg-[#f8fafc] aspect-square">
                       <img
                         src={`${process.env.NEXT_PUBLIC_API_BASE_URL}uploads/product/${product.thumbnail}`}
                         alt={product.name}
                         className="w-full h-full object-contain p-8 transform group-hover:scale-110 transition-transform duration-700"
+                        onError={(e) => { e.target.src = "/placeholder-image.png"; }}
                       />
                     </Link>
                     <div className="mt-6 px-2">
-                      <h3 className="font-bold text-slate-800 truncate text-lg leading-tight">{product.name}</h3>
+                      <h3 className="font-bold text-slate-800 truncate text-lg">{product.name}</h3>
                       <div className="flex items-center justify-between mt-4">
-                        <p className="text-2xl font-black text-slate-900 flex items-center">
-                           ₹{product.original_price.toLocaleString()}
+                        <p className="text-2xl font-black text-slate-900">
+                           ₹{Number(product.original_price).toLocaleString()}
                         </p>
-                        <span className="text-[9px] font-black text-blue-600 bg-blue-50 px-2 py-1 rounded-md uppercase">Stock</span>
                       </div>
                       <button
                         onClick={() => addToCart(product._id)}
-                        className="mt-6 w-full bg-slate-900 text-white py-4 rounded-[20px] font-bold flex items-center justify-center gap-3 hover:bg-blue-600 transition-all shadow-xl shadow-slate-100"
+                        className="mt-6 w-full bg-slate-900 text-white py-4 rounded-[20px] font-bold flex items-center justify-center gap-3 hover:bg-blue-600 transition-all"
                       >
                         <ShoppingCart size={19} /> Add To Cart
                       </button>
@@ -242,8 +262,7 @@ export default function ProductsWithSidebar() {
               <div className="text-center py-40 bg-white rounded-[40px] border-2 border-dashed border-slate-100">
                 <LayoutGrid size={48} className="text-slate-200 mx-auto mb-4" />
                 <h3 className="text-xl font-bold text-slate-800">No products matching filters</h3>
-                <p className="text-slate-500 text-sm mt-2">Try resetting your filters</p>
-                <button onClick={clearFilters} className="mt-6 text-blue-600 font-bold hover:underline underline-offset-4">Reset All Filters</button>
+                <button onClick={clearFilters} className="mt-6 text-blue-600 font-bold hover:underline">Reset All Filters</button>
               </div>
             )}
           </div>

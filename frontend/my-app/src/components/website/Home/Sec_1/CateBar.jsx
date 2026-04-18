@@ -57,8 +57,6 @@ export default function CategorySidebar() {
                   <img
                     src={`${process.env.NEXT_PUBLIC_API_BASE_URL}uploads/category/${item.image}`}
                     className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    alt={item.name}
-                    onError={(e) => { e.target.src = "https://via.placeholder.com/100?text=Category"; }}
                   />
                 </div>
                 <div>

@@ -23,7 +23,7 @@ export default function Header() {
         return;
       }
 
-      const res = await axiosAPIinstance.get(`cart/my-cart`, {
+      const res = await axiosAPIinstance.get(`cart`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 

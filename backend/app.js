@@ -14,9 +14,13 @@ const routerOrder = require("./routers/order");
 const app = express();
 
 app.use(express.json());
+
 app.use(cors({
-  origin: "http://localhost:3000",
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  origin: [
+    "http://localhost:10000",
+    "https://swoo-tech-mart-n1c5.vercel.app"
+  ],
+  credentials: true
 }));
 app.use("/category", routerCate);
 app.use("/product", routerPro);

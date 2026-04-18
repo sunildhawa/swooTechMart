@@ -167,7 +167,7 @@ const ShopCart = () => {
               <div className="bg-white p-20 rounded-[3rem] text-center border-2 border-dashed border-slate-100">
                  <ShoppingBag size={60} className="mx-auto text-slate-100 mb-4" />
                  <h2 className="text-xl font-bold text-slate-400">Your cart is empty</h2>
-                 <Link href="/" className="mt-4 inline-block text-teal-600 font-bold">Start Shopping</Link>
+                 <Link href="/products" className="mt-4 inline-block text-teal-600 font-bold">Start Shopping</Link>
               </div>
             )}
           </div>

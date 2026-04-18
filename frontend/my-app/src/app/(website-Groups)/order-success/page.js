@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from 'react';
 import Link from 'next/link';
-import { CheckCircle, ShoppingBag, ArrowRight, Star } from 'lucide-react';
+import { CheckCircle, ShoppingBag, ArrowRight } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function OrderSuccessPage() {
@@ -82,4 +82,5 @@ export default function OrderSuccessPage() {
             </div>
         </div>
     );
+    
 }

@@ -193,7 +193,7 @@ export default function UserFormUI({ data }) {
                 ) : (
                   data?.image && (
                     <img
-                      src={`${process.env.NEXT_PUBLIC_API_BASE_URL}uploads/user/${data.image}`}
+                      src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/uploads/user/${data.image}`}
                       className="h-24 w-24 rounded border"
                     />
                   )

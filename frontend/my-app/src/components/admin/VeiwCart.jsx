@@ -60,7 +60,7 @@ export default function AdminCartManagementNew({ initialData = [], user = null, 
           <div key={item._id} className="bg-white p-5 rounded-3xl shadow-sm border border-slate-100 flex items-center gap-6 group hover:shadow-md transition-all">
             <div className="w-24 h-24 rounded-2xl bg-slate-50 border p-2 shrink-0 flex items-center justify-center">
               <img 
-                src={`${process.env.NEXT_PUBLIC_API_BASE_URL}uploads/product/${item.productId?.thumbnail}`} 
+                src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/uploads/product/${item.productId?.thumbnail}`} 
                 className="max-h-full max-w-full object-contain" 
                 alt="prod" 
               />

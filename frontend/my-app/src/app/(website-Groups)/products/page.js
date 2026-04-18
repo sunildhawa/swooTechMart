@@ -230,7 +230,7 @@ const addToCart = async (productId) => {
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
                 {products.map((product) => (
                   <div key={product._id} className="group bg-white rounded-[32px] border border-slate-100 p-4 hover:shadow-2xl transition-all duration-500">
-                    <Link href={`/product/${product._id}`} className="block overflow-hidden rounded-[24px] bg-[#f8fafc] aspect-square">
+                    <Link href={`/cart/${product._id}`} className="block overflow-hidden rounded-[24px] bg-[#f8fafc] aspect-square">
                       <img
                         src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/uploads/product/${product.thumbnail}`}
                         alt={product.name}

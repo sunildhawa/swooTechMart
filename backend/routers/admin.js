@@ -5,7 +5,7 @@ const routerAdmin = express.Router();
 const {uploadsAdmin} = require("../middlewares/upload");
 
 routerAdmin.get("/", getAdmin);
-// routerAdmin.post("/create", uploadsAdmin.single("image"), postAdmin);
+// routerAdmin.post("/create", /uploadsAdmin.single("image"), postAdmin);
 routerAdmin.get("/fetch/:id", getByIdAdmin);
 routerAdmin.put("/update/:id", updateAdmin);
 routerAdmin.put("/:flag/:id", updateflagAdmin);

@@ -65,7 +65,7 @@ export default async function Page() {
                 {/* IMAGE */}
                 <td className="p-4">
                   <img
-                    src={`${process.env.NEXT_PUBLIC_API_BASE_URL}uploads/product/${product.thumbnail}`}
+                    src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/uploads/product/${product.thumbnail}`}
                     alt={product.name}
                     className="w-20 h-12 rounded-md object-cover"
                   />
@@ -129,7 +129,7 @@ export default async function Page() {
 
                     <ViewButton
                       product={product}
-                      imageBaseUrl={`${process.env.NEXT_PUBLIC_API_BASE_URL}uploads/product/`}
+                      imageBaseUrl={`${process.env.NEXT_PUBLIC_API_BASE_URL}/uploads/product/`}
                     />
 
                     <Link

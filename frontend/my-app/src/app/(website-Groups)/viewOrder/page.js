@@ -10,8 +10,8 @@ export default function ViewMyOrders() {
   const [loading, setLoading] = useState(true);
 
   // Added a fallback for the base URL to prevent undefined string concatenation
-  const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/";
-  const IMAGE_BASE_URL = `${API_BASE}uploads/product/`;
+  const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:10000/";
+  const IMAGE_BASE_URL = `${API_BASE}/uploads/product/`;
 
   useEffect(() => {
     const fetchUserOrders = async () => {

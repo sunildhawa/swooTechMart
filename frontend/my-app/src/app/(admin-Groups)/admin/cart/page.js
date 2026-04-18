@@ -16,7 +16,7 @@ export default function AdminCartManagement() {
   const fetchAllCarts = async () => {
     try {
       setLoading(true);
-      const res = await axiosAPIinstance.get("cart");
+      const res = await axiosAPIinstance.get("/cart");
       const rawData = res.data.data || [];
       
       const groups = rawData.reduce((acc, item) => {

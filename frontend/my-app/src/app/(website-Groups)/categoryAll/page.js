@@ -48,7 +48,7 @@ export default async function AllCategoriesPage() {
                 {/* Image Container */}
                 <div className="relative z-10 w-32 h-32 mb-6 rounded-3xl overflow-hidden bg-gray-50 border border-gray-50 flex-shrink-0">
                   <CategoryImage
-                    src={`${process.env.NEXT_PUBLIC_API_BASE_URL}uploads/category/${item.image}`}
+                    src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/uploads/category/${item.image}`}
                     name={item.name}
                   />
 

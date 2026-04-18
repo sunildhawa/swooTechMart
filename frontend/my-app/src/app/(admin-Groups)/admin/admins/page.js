@@ -79,7 +79,7 @@ const AdminManagement = async () => {
 
                     {/* DELETE BUTTON */}
                     <DeleteBtn
-                      url={`admin/delete/${admin._id}`}
+                      url={`/admin/delete/${admin._id}`}
 
                       className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors"
                       title="Delete Admin"

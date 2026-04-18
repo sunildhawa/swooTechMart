@@ -6,7 +6,7 @@ import { FiArrowLeft} from "react-icons/fi";
 export default function OrderDetailsPage({ data }) {
     const router = useRouter();
     const order = data;
-    const IMAGE_BASE_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}uploads/product/`;
+    const IMAGE_BASE_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/uploads/product/`;
 
     if (!order) return <div className="p-20 text-center">No order data found.</div>;
 

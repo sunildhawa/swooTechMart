@@ -15,14 +15,14 @@ const UserProfile = () => {
       setLoading(false);
     } else {
       // Agar user login nahi hai, toh login page par bhej dein
-      router.push('/contact');
+      router.push('/login');
     }
   }, [router]);
 
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
-    router.push('/contact');
+    router.push('/login');
   };
 
   if (loading) {
@@ -48,7 +48,7 @@ const UserProfile = () => {
             <div className="w-24 h-24 bg-gray-200 rounded-2xl border-4 border-white shadow-md overflow-hidden flex items-center justify-center">
               {user?.image ? (
                 <img 
-                  src={`${process.env.NEXT_PUBLIC_API_BASE_URL}uploads/category/${user.image}`} 
+                  src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/uploads/category/${user.image}`} 
                   alt="Profile" 
                   className="w-full h-full object-cover"
                 />

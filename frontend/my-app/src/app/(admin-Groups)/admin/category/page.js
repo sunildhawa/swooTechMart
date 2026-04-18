@@ -58,7 +58,7 @@ export default async function Page() {
               >
                 <td className="p-4">
                   <img
-                    src={`${process.env.NEXT_PUBLIC_API_BASE_URL}uploads/category/${cat.image}`}
+                    src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/uploads/category/${cat.image}`}
                     className="w-20 h-10 object-cover rounded"
                   />
                 </td>
@@ -107,7 +107,7 @@ export default async function Page() {
                     </Link>
 
                   <DeleteBtn
-                    url={`category/delete/${cat._id}`}
+                    url={`/category/delete/${cat._id}`}
                     redirect="/admin/category"
                   />
                 </td>

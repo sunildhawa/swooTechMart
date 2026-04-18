@@ -2,7 +2,7 @@ import { axiosAPIinstance } from "@/utils/apiHealpers"
 
 import axios from "axios";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/";
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:10000";
 
 export const getOrders = async () => {
     try {

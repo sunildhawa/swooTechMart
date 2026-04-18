@@ -134,7 +134,7 @@ const ShopCart = () => {
 
                   <div className="w-24 h-24 rounded-2xl bg-white border p-2 shrink-0">
                     <img
-                      src={`${process.env.NEXT_PUBLIC_API_BASE_URL}uploads/product/${item.productId?.thumbnail}`}
+                      src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/uploads/product/${item.productId?.thumbnail}`}
                       alt="product"
                       className="w-full h-full object-contain"
                       onError={(e) => e.target.src = "https://via.placeholder.com/150"}

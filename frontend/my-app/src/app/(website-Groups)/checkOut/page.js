@@ -90,7 +90,7 @@ export default function CheckoutPage() {
 
         if (paymentMethod === "cod") {
 
-            const res = await axiosAPIinstance.post("order/verify", {
+            const res = await axiosAPIinstance.post("/order/verify", {
                 paymentMethod: "COD",
                 cartItems,
                 address,
@@ -228,7 +228,7 @@ rzp.open();
                                     <div key={item._id} className="flex justify-between items-center group">
                                         <div className="flex items-center gap-3">
                                             <div className="w-12 h-12 bg-gray-50 rounded-xl p-1 border overflow-hidden">
-                                                <img src={`${process.env.NEXT_PUBLIC_API_BASE_URL}uploads/product/${item.productId?.thumbnail}`} className="w-full h-full object-contain mix-blend-multiply" />
+                                                <img src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/uploads/product/${item.productId?.thumbnail}`} className="w-full h-full object-contain mix-blend-multiply" />
                                             </div>
                                             <div className="max-w-[120px]"><p className="text-[11px] font-bold text-gray-800 truncate">{item.productId?.name}</p><p className="text-[10px] font-black text-[#00A896]">Qty: {item.qty}</p></div>
                                         </div>

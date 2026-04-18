@@ -52,7 +52,7 @@ export default function MultipleImageAdd({ productData }) {
                     <img
                         key={index}
                         className="w-20 h-20 object-cover rounded"
-                        src={`${process.env.NEXT_PUBLIC_API_BASE_URL}uploads/product/other/${item}`}
+                        src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/uploads/product/other/${item}`}
                         alt="product"
                     />
                 ))}

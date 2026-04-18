@@ -187,7 +187,7 @@ export default function TopCategories() {
 //                   className="flex-shrink-0 w-44 h-24 bg-white/50 rounded-2xl flex items-center justify-center p-6 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 hover:bg-white hover:shadow-[0_15px_40px_rgba(0,0,0,0.08)] transition-all duration-700 ease-out border border-transparent hover:border-gray-100 group/item"
 //                 >
 //                   <img
-//                     src={`${process.env.NEXT_PUBLIC_API_BASE_URL}uploads/brand/${b.image}`}
+//                     src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/uploads/brand/${b.image}`}
 //                     alt={b.name}
 //                     className="max-h-full max-w-full object-contain transform group-hover/item:scale-110 transition-transform duration-500"
 //                   />

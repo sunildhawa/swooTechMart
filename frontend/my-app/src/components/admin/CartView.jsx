@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import { FiX, FiUser, FiPackage, FiTruck, FiCreditCard } from 'react-icons/fi';
+import { FiX, FiUser, FiPackage} from 'react-icons/fi';
 
 export default function CartDetailPage({ isOpen, onClose, cartData }) {
   if (!isOpen) return null;

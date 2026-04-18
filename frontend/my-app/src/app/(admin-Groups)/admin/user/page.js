@@ -48,7 +48,7 @@ export default async function AdminUserPage() {
                       <div className="flex items-center gap-4">
                         <div className="relative">
                           <img
-                            src={user.profilePic ? `${API_BASE}uploads/user/${user.profilePic}` : "/user-placeholder.png"}
+                            src={user.profilePic ? `${API_BASE}/uploads/user/${user.profilePic}` : "/user-placeholder.png"}
                             className="h-12 w-12 rounded-full border-2 border-white shadow-sm object-cover"
                             alt="user"
                           />

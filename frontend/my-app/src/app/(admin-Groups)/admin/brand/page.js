@@ -59,7 +59,7 @@ export default async function Page() {
               >
                 <td className="p-4">
                   <img
-                    src={`${process.env.NEXT_PUBLIC_API_BASE_URL}uploads/brand/${b.image}`}
+                    src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/uploads/brand/${b.image}`}
                     alt={b.name}
                     className="w-20 h-10 rounded-md object-contain"
                   />
@@ -93,7 +93,7 @@ export default async function Page() {
                       <FiEdit />
                     </Link>
                     <DeleteBtn
-                      url={`brand/delete/${b._id}`}
+                      url={`/brand/delete/${b._id}`}
                       redirect="/admin/brand"
                     />
                   </div>

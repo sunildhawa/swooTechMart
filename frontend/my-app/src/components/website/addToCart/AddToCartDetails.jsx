@@ -41,7 +41,7 @@ export default function AddToCartDetails({ data }) {
   return (
     <div className="max-w-6xl mx-auto px-4 py-10 bg-white">
       {products.map((item, index) => {
-        const imageUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}uploads/product/${item.thumbnail}`;
+        const imageUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/uploads/product/${item.thumbnail}`;
 
         return (
           <div key={item._id || index} className="flex flex-col lg:flex-row gap-12 mb-20 last:mb-0 border-b pb-12 last:border-0">

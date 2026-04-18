@@ -40,7 +40,7 @@ export default function AddCategoryPage() {
 
     try {
       const response = await axiosAPIinstance.post(
-        "category/create",
+        "/category/create",
         payload
       );
 

@@ -21,7 +21,7 @@ export default function AddCategoryPage() {
             slug: slugRef.current.value,
             code: e.target.code.value,
         }
-        axiosAPIinstance.post("color/create", payload).then((response) => {
+        axiosAPIinstance.post("/color/create", payload).then((response) => {
             notify(response.data.message, response.data.success);
             if (response.data.success) {
                 nameRef.current.value = "";
